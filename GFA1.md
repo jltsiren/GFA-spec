@@ -312,12 +312,13 @@ The fragments can then be ordered by their `SeqStart` fields.
 | `RF`  | `b`  | `1` if this is a reference sequence
 | `FI`  | `b`  | `1` if `SeqStart` is a fragment index rather than a start position
 | `OL`  | `b`  | `1` if the fragments may be overlapping
-| `CN`  | `Z`  | Chromosome name
+| `CN`  | `Z`  | Chromosome name
 
 Sequence length may be necessary for populating SAM/VCF headers correctly if the last fragment ends before the end of the sequence.
 Tools may use the `RF` flag as a hint to build more extensive data structures for some haplotype sequences, for example for reading the input or writing the output in terms of their coordinates.
 
 Fragment indexes may be used in place of start positions if the exact coordinates of each fragment cannot be determined.
+`SeqEnd` should not be specified when using fragment indexes.
 Haplotype sequences using fragment indexes may not be good candidates for references, as positions in a fragment cannot be mapped to positions in the sequence.
 The `OL` flag may be used to override the expectation that the [`SeqStart`,`SeqEnd`) intervals must not overlap.
 
